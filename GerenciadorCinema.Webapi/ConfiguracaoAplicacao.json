@@ -1,0 +1,11 @@
+{
+  "VersaoSistema": "2.0",
+
+  "ConfiguracaoLogs": {
+    "DiretorioSaida": "D:\\logs\\GerenciadorCinema"
+  },
+
+  "ConnectionStrings": {
+    "SqlServer": "Data Source=(LOCALDB)\\MSSQLLOCALDB;Initial Catalog=GerenciadorCinema;Integrated Security=True"
+  }
+}

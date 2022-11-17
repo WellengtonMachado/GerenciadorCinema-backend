@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.17">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GerenciadorCimena.Dominio\GerenciadorCimena.Dominio.csproj" />
+    <ProjectReference Include="..\GerenciadorCinema.Infra.Logging\GerenciadorCinema.Infra.Logging.csproj" />
+    <ProjectReference Include="..\GerenciadorCinema.Infra.Orm\GerenciadorCinema.Infra.Orm.csproj" />
+    <ProjectReference Include="..\GerenciadorCinema.Servico\GerenciadorCinema.Servico.csproj" />
+  </ItemGroup>
+
+</Project>
