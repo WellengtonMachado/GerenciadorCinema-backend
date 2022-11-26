@@ -15,7 +15,7 @@ namespace GerenciadorCinema.Infra.Orm.ModuloSala
         {
         }
 
-        public Sala SelecionarPorId(Guid id)
+        public override Sala SelecionarPorId(Guid id)
         {
             return registros
                 .Include(x => x.Sessoes)

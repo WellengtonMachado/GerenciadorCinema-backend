@@ -24,25 +24,15 @@ namespace GerenciadorCinema.Infra.Orm.ModuloSessao
                 .SingleOrDefault(x => x.Id == id);
         }
 
-        public override List<Sessao> SelecionarTodos(Guid usuarioId = new Guid())
+        public override List<Sessao> SelecionarTodos()
         {
             return registros
                 .Include(x => x.Filme)
-                .Include(x => x.Sala)
-                .Where(x => x.UsuarioId.Equals(usuarioId))
+                .Include(x => x.Sala)                
                 .ToList();
         }
 
 
-        // verificar 
-        public List<Sessao> SelecionarSessaoPorData(DateTime data, Guid usuarioId = new Guid())
-        {
-            return registros
-                .Include(x => x.Filme)
-                .Include(x => x.Sala)
-                .Where(x => x.Data > data)
-                .Where(x => x.UsuarioId.Equals(usuarioId))
-                .ToList();
-        }
+       
     }
 }

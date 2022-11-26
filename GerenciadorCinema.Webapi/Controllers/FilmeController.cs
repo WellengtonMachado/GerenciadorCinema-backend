@@ -27,7 +27,7 @@ namespace GerenciadorCinema.Webapi.Controllers
         [HttpGet]
         public ActionResult<List<ListarFilmeViewModel>> SelecionarTodos()
         {
-            var filmeResult = servicoFilme.SelecionarTodos(UsuarioLogado.Id);
+            var filmeResult = servicoFilme.SelecionarTodos();
 
             if (filmeResult.IsFailed)
                 return InternalError(filmeResult);

@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 namespace GerenciadorCimena.Dominio.ModuloSessoes
 {
     public interface IRepositorioSessao : IRepositorio<Sessao>
-    {
-
-        List<Sessao> SelecionarSessaoPorData(DateTime data, Guid usuarioId = new Guid());
+    {        
     }
 }

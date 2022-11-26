@@ -10,7 +10,7 @@ namespace GerenciadorCimena.Dominio.ModuloSessoes
         {
             RuleFor(x => x.Data)              
                .NotEmpty().WithMessage("Data não pode ser vazia")
-               .GreaterThanOrEqualTo((x) => DateTime.Now.Date).WithMessage("A data não pode ser antes de hoje");
+               .GreaterThanOrEqualTo((x) => DateTime.Now.Date).WithMessage("A data da sessão não pode ser anterior à data de hoje");
 
 
             RuleFor(x => x.HorarioInicio)
@@ -21,12 +21,6 @@ namespace GerenciadorCimena.Dominio.ModuloSessoes
                .NotEmpty().WithMessage("Valor do ingresso não pode ser vazio");
                
 
-            RuleFor(x => x.Animacao)              
-              .NotNull().WithMessage("Animacao não pode ser vazia");
-
-
-            RuleFor(x => x.Audio)             
-              .NotNull().WithMessage("Audio não pode ser vazio");
 
 
             

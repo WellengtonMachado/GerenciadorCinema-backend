@@ -85,7 +85,14 @@ namespace GerenciadorCinema.Servico.ModuloSessao
 
         public Result Excluir(Sessao sessao)
         {
-            Log.Logger.Debug("Tentando excluir Sessão... {@s}", sessao);
+            Log.Logger.Debug("Tentando excluir Sessão {@s}", sessao);
+
+            if (sessao.NaoExcluirAntesDezDias())
+            {
+                return Result.Fail("Só pode remover a sessão se faltar 10 ou mais dias para que ela ocorra.");
+            }
+
+
 
             try
             {
@@ -120,13 +127,13 @@ namespace GerenciadorCinema.Servico.ModuloSessao
         }
 
 
-        public Result<List<Sessao>> SelecionarTodos(Guid usuarioId = new Guid())
+        public Result<List<Sessao>> SelecionarTodos()
         {
             Log.Logger.Debug("Tentando selecionar Sessões...");
 
             try
             {
-                var sessoes = repositorioSessao.SelecionarTodos(usuarioId);
+                var sessoes = repositorioSessao.SelecionarTodos();
 
                 Log.Logger.Information("Sessões selecionadas com sucesso");
 
@@ -172,11 +179,7 @@ namespace GerenciadorCinema.Servico.ModuloSessao
         }
 
 
-        public Result <List<Sessao>>  SelecionarSessaoPorData(DateTime data, Guid usuarioId = new Guid())
-        {
-            return repositorioSessao.SelecionarSessaoPorData(data);
-
-        }
+        
 
     }
 }

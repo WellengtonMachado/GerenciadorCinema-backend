@@ -27,7 +27,7 @@ namespace GerenciadorCinema.Webapi.Controllers
         [HttpGet]
         public ActionResult<List<ListarSessaoViewModel>> SelecionarTodos()
         {
-            var sessaoResult = servicoSessao.SelecionarTodos(UsuarioLogado.Id);
+            var sessaoResult = servicoSessao.SelecionarTodos();
 
             if (sessaoResult.IsFailed)
                 return InternalError(sessaoResult);
@@ -39,20 +39,7 @@ namespace GerenciadorCinema.Webapi.Controllers
             });
         }
 
-        [HttpGet, Route("passados/{dataAtual:datetime}")]
-        public ActionResult<List<ListarSessaoViewModel>> SelecionarSessaoPorData(DateTime data)
-        {
-            var sessaoResult = servicoSessao.SelecionarSessaoPorData(data, UsuarioLogado.Id);
-
-            if (sessaoResult.IsFailed)
-                return InternalError(sessaoResult);
-
-            return Ok(new
-            {
-                sucesso = true,
-                dados = mapeadorSessoes.Map<List<ListarSessaoViewModel>>(sessaoResult.Value)
-            });
-        }
+        
 
         [HttpGet("visualizacao-completa/{id:guid}")]
         public ActionResult<VisualizarSessaoViewModel> SelecionarSessaoCompletoPorId(Guid id)

@@ -9,6 +9,6 @@ namespace GerenciadorCimena.Dominio.ModuloFilmes
 {
     public interface IRepositorioFilme : IRepositorio<Filme>
     {
-        
+        Filme SelecionarFilmePorNome(string titulo);
     }
 }

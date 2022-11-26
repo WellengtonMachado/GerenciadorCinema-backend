@@ -12,7 +12,7 @@ namespace GerenciadorCinema.Webapi.ViewModels.ModuloSessao
 
         public string HorarioFim { get; set; }
 
-        public string ValorIngresso { get; set; }
+        public decimal ValorIngresso { get; set; }
 
         public string Animacao { get; set; }
 

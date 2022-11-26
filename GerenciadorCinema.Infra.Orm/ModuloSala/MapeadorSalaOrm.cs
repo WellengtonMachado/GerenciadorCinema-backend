@@ -19,7 +19,9 @@ namespace GerenciadorCinema.Infra.Orm.ModuloSala
                 .HasForeignKey(x => x.UsuarioId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            
+            builder.HasData(new Sala("Sala 1", 15));
+            builder.HasData(new Sala("Sala 2", 20));
+            builder.HasData(new Sala("Sala 3", 25));
         }
 
 

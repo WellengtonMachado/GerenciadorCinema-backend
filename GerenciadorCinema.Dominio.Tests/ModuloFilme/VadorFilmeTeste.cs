@@ -11,7 +11,7 @@ namespace GerenciadorCinema.Dominio.Tests.ModuloFilme
         [TestMethod]
         public void Imagem_nao_Pode_Ser_Vazia()
         {
-            Filme filme = new(new byte[] { }, "Titulo Teste", "Descricao Teste", new TimeSpan (0, 2, 20, 0));
+            Filme filme = new("", "Titulo Teste", "Descricao Teste", new TimeSpan (0, 2, 20, 0));
 
             ValidadorFilme validacao = new();
 
@@ -27,7 +27,7 @@ namespace GerenciadorCinema.Dominio.Tests.ModuloFilme
         [TestMethod]
         public void Titulo_nao_Pode_Ser_Nulo()
         {
-            Filme filme = new(new byte[] {2,5,10,98 }, null , "Descricao Teste", new TimeSpan(0, 2, 20, 0));
+            Filme filme = new ("Imagem", null , "Descricao Teste", new TimeSpan(0, 2, 20, 0));
 
             ValidadorFilme validacao = new();
 
@@ -42,7 +42,7 @@ namespace GerenciadorCinema.Dominio.Tests.ModuloFilme
         [TestMethod]
         public void Titulo_nao_Pode_Ser_Vazio()
         {
-            Filme filme = new(new byte[] { 2, 5, 10, 98 }, "", "Descricao Teste", new TimeSpan(0, 2, 20, 0));
+            Filme filme = new("Imagem", "", "Descricao Teste", new TimeSpan(0, 2, 20, 0));
 
             ValidadorFilme validacao = new();
 
@@ -57,7 +57,7 @@ namespace GerenciadorCinema.Dominio.Tests.ModuloFilme
         [TestMethod]
         public void Descricao_nao_Pode_Ser_Nulo()
         {
-            Filme filme = new(new byte[] { 2, 5, 10, 98 }, "Filme Teste", null, new TimeSpan(0, 2, 20, 0));
+            Filme filme = new("Imagem", "Filme Teste", null, new TimeSpan(0, 2, 20, 0));
 
             ValidadorFilme validacao = new();
 
@@ -72,7 +72,7 @@ namespace GerenciadorCinema.Dominio.Tests.ModuloFilme
         [TestMethod]
         public void Descricao_nao_Pode_Ser_Vazia()
         {
-            Filme filme = new(new byte[] { 2, 5, 10, 98 }, "Filme Teste", "", new TimeSpan(0, 2, 20, 0));
+            Filme filme = new("Imagem", "Filme Teste", "", new TimeSpan(0, 2, 20, 0));
 
             ValidadorFilme validacao = new();
 
@@ -86,7 +86,7 @@ namespace GerenciadorCinema.Dominio.Tests.ModuloFilme
         [TestMethod]
         public void Duracao_nao_Pode_Ser_Vazia()
         {
-            Filme filme = new(new byte[] { 2, 5, 10, 98 }, "Filme Teste", " Descricao Teste", new TimeSpan());
+            Filme filme = new("Imagem", "Filme Teste", " Descricao Teste", new TimeSpan());
 
             ValidadorFilme validacao = new();
 

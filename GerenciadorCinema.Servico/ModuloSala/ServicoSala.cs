@@ -121,13 +121,13 @@ namespace GerenciadorCinema.Servico.ModuloSala
 
 
 
-        public Result<List<Sala>> SelecionarTodos(Guid usuarioId = new Guid())
+        public Result<List<Sala>> SelecionarTodos()
         {
             Log.Logger.Debug("Tentando selecionar Salas.");
 
             try
             {
-                var salas = repositorioSala.SelecionarTodos(usuarioId);
+                var salas = repositorioSala.SelecionarTodos();
 
                 Log.Logger.Information("Salas selecionadas com sucesso");
 

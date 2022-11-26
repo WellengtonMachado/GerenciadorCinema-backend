@@ -17,8 +17,7 @@ namespace GerenciadorCinema.Webapi.Config.AutoMapperConfig
 
 
             //Converter de Entidade para ViewModel
-            CreateMap<Filme, ListarFilmeViewModel>()
-                .ForMember(destino => destino.Imagem, opt => opt.MapFrom(origem => origem.Imagem))
+            CreateMap<Filme, ListarFilmeViewModel>()               
 
                 .ForMember(destino => destino.Duracao, opt => opt.MapFrom(origem => origem.Duracao.ToString(@"hh\:mm\:ss")));
 

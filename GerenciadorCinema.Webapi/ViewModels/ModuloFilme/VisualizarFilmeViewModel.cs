@@ -12,7 +12,7 @@ namespace GerenciadorCinema.Webapi.ViewModels.ModuloFilme
 
         public Guid Id { get; set; }
 
-        public byte[] Imagem { get; set; }
+        public string Imagem { get; set; }
 
         public string Titulo { get; set; }
 

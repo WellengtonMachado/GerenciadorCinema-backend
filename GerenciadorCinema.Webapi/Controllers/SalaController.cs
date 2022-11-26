@@ -27,7 +27,7 @@ namespace GerenciadorCinema.Webapi.Controllers
         [HttpGet]
         public ActionResult<List<ListarSalaViewModel>> SelecionarTodos()
         {
-            var salaResult = servicoSala.SelecionarTodos(UsuarioLogado.Id);
+            var salaResult = servicoSala.SelecionarTodos();
 
             if (salaResult.IsFailed)
                 return InternalError(salaResult);

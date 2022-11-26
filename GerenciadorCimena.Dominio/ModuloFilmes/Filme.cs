@@ -1,4 +1,5 @@
 ﻿using GerenciadorCimena.Dominio.Compartilhado;
+using GerenciadorCimena.Dominio.ModuloAutenticacao;
 using GerenciadorCimena.Dominio.ModuloSessoes;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace GerenciadorCimena.Dominio.ModuloFilmes
     public class Filme : EntidadeBase<Filme>
     {        
 
-        public byte[] Imagem { get; set; }
+        public string Imagem { get; set; }
 
         public string Titulo { get; set; }
 
@@ -25,7 +26,7 @@ namespace GerenciadorCimena.Dominio.ModuloFilmes
         {
         }
 
-        public Filme(byte[] imagem, string titulo, string descricao, TimeSpan duracao)
+        public Filme(string imagem, string titulo, string descricao, TimeSpan duracao)
         {
             Imagem = imagem;
             Titulo = titulo;
@@ -42,22 +43,24 @@ namespace GerenciadorCimena.Dominio.ModuloFilmes
             Duracao = registro.Duracao;            
         }
 
-        public override bool Equals(object obj)
+      
+
+        public override int GetHashCode()
         {
-            Filme filme = obj as Filme;
-
-            if (filme == null)
-                return false;
-
-            return
-                filme.Id.Equals(Id) &&
-                filme.Imagem.Equals(Imagem) &&
-                filme.Titulo.Equals(Titulo) &&
-                filme.Descricao.Equals(Descricao) &&
-                filme.Duracao.Equals(Duracao);
-
+            return HashCode.Combine(Id, UsuarioId, Usuario, Imagem, Titulo, Descricao, Duracao, Sessoes);
         }
 
-        
+        public override bool Equals(object obj)
+        {
+            return obj is Filme filme &&
+                   Id.Equals(filme.Id) &&
+                   UsuarioId.Equals(filme.UsuarioId) &&
+                   EqualityComparer<Usuario>.Default.Equals(Usuario, filme.Usuario) &&
+                   Imagem == filme.Imagem &&
+                   Titulo == filme.Titulo &&
+                   Descricao == filme.Descricao &&
+                   Duracao.Equals(filme.Duracao) &&
+                   EqualityComparer<List<Sessao>>.Default.Equals(Sessoes, filme.Sessoes);
+        }
     }
 }

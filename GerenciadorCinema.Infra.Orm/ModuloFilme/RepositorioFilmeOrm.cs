@@ -16,7 +16,10 @@ namespace GerenciadorCinema.Infra.Orm.ModuloFilme
         {
         }
 
-
+        public Filme SelecionarFilmePorNome(string titulo)
+        {
+            return registros.SingleOrDefault(x => x.Titulo == titulo);  
+        }
 
         public override Filme SelecionarPorId(Guid id)
         {

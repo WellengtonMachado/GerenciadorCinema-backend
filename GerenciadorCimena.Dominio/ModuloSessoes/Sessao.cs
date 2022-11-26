@@ -1,4 +1,5 @@
 ﻿using GerenciadorCimena.Dominio.Compartilhado;
+using GerenciadorCimena.Dominio.ModuloAutenticacao;
 using GerenciadorCimena.Dominio.ModuloFilmes;
 using GerenciadorCimena.Dominio.ModuloSalas;
 using System;
@@ -11,7 +12,7 @@ namespace GerenciadorCimena.Dominio.ModuloSessoes
 {
     public class Sessao : EntidadeBase<Sessao>
     {
-        private DateTime _date;
+        
         private Filme _filme;
         private Sala _sala;
 
@@ -33,7 +34,7 @@ namespace GerenciadorCimena.Dominio.ModuloSessoes
         }
 
 
-        public DateTime Data { get { return _date.Date; } set { _date = value; } }
+        public DateTime Data { get; set; }
 
         public TimeSpan HorarioInicio { get; set; }
 
@@ -76,11 +77,6 @@ namespace GerenciadorCimena.Dominio.ModuloSessoes
 
         public Guid? SalaId { get; set; }
 
-
-
-
-
-
         public override void Atualizar(Sessao registro)
         {
             Id = registro.Id;
@@ -97,20 +93,48 @@ namespace GerenciadorCimena.Dominio.ModuloSessoes
         public override bool Equals(object obj)
         {
             return obj is Sessao sessao &&
-                   Id == sessao.Id &&
+                   Id.Equals(sessao.Id) &&
+                   UsuarioId.Equals(sessao.UsuarioId) &&
+                   EqualityComparer<Usuario>.Default.Equals(Usuario, sessao.Usuario) &&
+                   EqualityComparer<Filme>.Default.Equals(_filme, sessao._filme) &&
+                   EqualityComparer<Sala>.Default.Equals(_sala, sessao._sala) &&
                    Data == sessao.Data &&
-                   HorarioInicio == sessao.HorarioInicio &&
-                   HorarioFim == sessao.HorarioFim &&
+                   HorarioInicio.Equals(sessao.HorarioInicio) &&
+                   HorarioFim.Equals(sessao.HorarioFim) &&
                    ValorIngresso == sessao.ValorIngresso &&
                    Animacao == sessao.Animacao &&
                    Audio == sessao.Audio &&
-                   Filme == sessao.Filme &&
-                   Sala == sessao.Sala &&
                    EqualityComparer<Filme>.Default.Equals(Filme, sessao.Filme) &&
-                   EqualityComparer<Sala>.Default.Equals(Sala, sessao.Sala); 
+                   EqualityComparer<Guid?>.Default.Equals(FilmeId, sessao.FilmeId) &&
+                   EqualityComparer<Sala>.Default.Equals(Sala, sessao.Sala) &&
+                   EqualityComparer<Guid?>.Default.Equals(SalaId, sessao.SalaId);
         }
 
+        public override int GetHashCode()
+        {
+            HashCode hash = new HashCode();
+            hash.Add(Id);
+            hash.Add(UsuarioId);
+            hash.Add(Usuario);
+            hash.Add(_filme);
+            hash.Add(_sala);
+            hash.Add(Data);
+            hash.Add(HorarioInicio);
+            hash.Add(HorarioFim);
+            hash.Add(ValorIngresso);
+            hash.Add(Animacao);
+            hash.Add(Audio);
+            hash.Add(Filme);
+            hash.Add(FilmeId);
+            hash.Add(Sala);
+            hash.Add(SalaId);
+            return hash.ToHashCode();
+        }
 
+        public bool NaoExcluirAntesDezDias()
+        {
+            return (Data - DateTime.Now).TotalDays < 10;
+        }
 
 
     }

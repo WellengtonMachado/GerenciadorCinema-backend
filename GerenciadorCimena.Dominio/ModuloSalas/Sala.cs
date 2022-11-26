@@ -1,4 +1,5 @@
 ﻿using GerenciadorCimena.Dominio.Compartilhado;
+using GerenciadorCimena.Dominio.ModuloAutenticacao;
 using GerenciadorCimena.Dominio.ModuloSessoes;
 using System;
 
@@ -42,11 +43,18 @@ namespace GerenciadorCimena.Dominio.ModuloSalas
         public override bool Equals(object obj)
         {
             return obj is Sala sala &&
-                Id == sala.Id &&
-                Nome == sala.Nome &&
-                QuantidadeAssentos == sala.QuantidadeAssentos;
-        }       
+                   Id.Equals(sala.Id) &&
+                   UsuarioId.Equals(sala.UsuarioId) &&
+                   EqualityComparer<Usuario>.Default.Equals(Usuario, sala.Usuario) &&
+                   Nome == sala.Nome &&
+                   QuantidadeAssentos == sala.QuantidadeAssentos &&
+                   EqualityComparer<List<Sessao>>.Default.Equals(Sessoes, sala.Sessoes);
+        }
 
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, UsuarioId, Usuario, Nome, QuantidadeAssentos, Sessoes);
+        }
     }
 
    

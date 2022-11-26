@@ -4,14 +4,16 @@ using GerenciadorCinema.Infra.Orm.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GerenciadorCinema.Infra.Orm.Migrations
 {
     [DbContext(typeof(GerenciadorCinemaDbContext))]
-    partial class GerenciadorCinemaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221125231535_alteracaoFoto")]
+    partial class alteracaoFoto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

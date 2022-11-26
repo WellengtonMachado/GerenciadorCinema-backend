@@ -11,11 +11,11 @@ namespace GerenciadorCinema.Infra.Orm.ModuloFilme
             builder.ToTable("TBFilme");
 
             builder.Property(x => x.Id).ValueGeneratedNever();
-            builder.Property(x => x.Imagem).HasColumnType("VARBINARY(MAX)").IsRequired();
+            builder.Property(x => x.Imagem).HasColumnType("varchar(MAX)").IsRequired();
             builder.Property(x => x.Titulo).HasColumnType("varchar(200)").IsRequired();
             builder.Property(x => x.Descricao).HasColumnType("varchar(500)").IsRequired();
             builder.Property(x => x.Duracao).HasColumnType("time").IsRequired();
-                        
+            
 
             builder.HasOne(x => x.Usuario)
                .WithMany()
