@@ -1,4 +1,5 @@
 using GerenciadorCinema.Infra.Orm.Compartilhado;
+using GerenciamentoCinema.Infra.Configs;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -11,27 +12,19 @@ namespace GerenciadorCinema.Webapi
     public class Program
     {
         public static void Main(string[] args)
-        {
+        {           
+
             try
             {
-                var app = CreateHostBuilder(args)
-                    .ConfigureServices(x =>
-
-                        x.AddLogging(a => {
-
-                            a.ClearProviders();
-                            a.AddSerilog();
-                        }))
-
-                    .Build();
+                var app = CreateHostBuilder(args).Build();
 
                 using (var scope = app.Services.CreateScope())
-                {
+                {       
                     var services = scope.ServiceProvider;
 
                     var db = services.GetRequiredService<GerenciadorCinemaDbContext>();
 
-                    Log.Logger.Information("Atualizando a banco de dados do Gerenciador de Cinema...");
+                    Log.Logger.Information("Atualizando a banco de dados do e-Agenda...");
 
                     var migracaoRealizada = MigradorBancoDadosGerenciadorCinema.AtualizarBancoDados(db);
 
@@ -41,7 +34,7 @@ namespace GerenciadorCinema.Webapi
                         Log.Logger.Information("Nenhuma migração pendente");
                 }
 
-                Log.Logger.Information("Iniciando o servidor do Gerenciador de Cinema...");
+                Log.Logger.Information("Iniciando o servidor da aplicação e-Agenda...");
 
                 app.Run();
 
