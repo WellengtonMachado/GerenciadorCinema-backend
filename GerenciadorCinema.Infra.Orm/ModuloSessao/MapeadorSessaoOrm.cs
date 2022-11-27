@@ -20,11 +20,7 @@ namespace GerenciadorCinema.Infra.Orm.ModuloSessao
             builder.Property(x => x.Animacao).HasConversion<int>().IsRequired();
             builder.Property(x => x.Audio).HasConversion<int>().IsRequired();
 
-            builder.HasOne(x => x.Usuario)
-               .WithMany()
-               .IsRequired(false)
-               .HasForeignKey(x => x.UsuarioId)
-               .OnDelete(DeleteBehavior.NoAction);
+           
 
             builder.HasOne(x => x.Filme)
                 .WithMany(x => x.Sessoes)

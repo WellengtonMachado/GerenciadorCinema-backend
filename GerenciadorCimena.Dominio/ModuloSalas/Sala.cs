@@ -44,8 +44,6 @@ namespace GerenciadorCimena.Dominio.ModuloSalas
         {
             return obj is Sala sala &&
                    Id.Equals(sala.Id) &&
-                   UsuarioId.Equals(sala.UsuarioId) &&
-                   EqualityComparer<Usuario>.Default.Equals(Usuario, sala.Usuario) &&
                    Nome == sala.Nome &&
                    QuantidadeAssentos == sala.QuantidadeAssentos &&
                    EqualityComparer<List<Sessao>>.Default.Equals(Sessoes, sala.Sessoes);
@@ -53,7 +51,7 @@ namespace GerenciadorCimena.Dominio.ModuloSalas
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Id, UsuarioId, Usuario, Nome, QuantidadeAssentos, Sessoes);
+            return HashCode.Combine(Id, Nome, QuantidadeAssentos, Sessoes);
         }
     }
 

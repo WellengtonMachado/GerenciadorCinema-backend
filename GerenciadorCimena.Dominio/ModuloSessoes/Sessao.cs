@@ -12,7 +12,7 @@ namespace GerenciadorCimena.Dominio.ModuloSessoes
 {
     public class Sessao : EntidadeBase<Sessao>
     {
-        
+
         private Filme _filme;
         private Sala _sala;
 
@@ -32,6 +32,8 @@ namespace GerenciadorCimena.Dominio.ModuloSessoes
             Filme = filme;
             Sala = sala;
         }
+
+
 
 
         public DateTime Data { get; set; }
@@ -94,8 +96,6 @@ namespace GerenciadorCimena.Dominio.ModuloSessoes
         {
             return obj is Sessao sessao &&
                    Id.Equals(sessao.Id) &&
-                   UsuarioId.Equals(sessao.UsuarioId) &&
-                   EqualityComparer<Usuario>.Default.Equals(Usuario, sessao.Usuario) &&
                    EqualityComparer<Filme>.Default.Equals(_filme, sessao._filme) &&
                    EqualityComparer<Sala>.Default.Equals(_sala, sessao._sala) &&
                    Data == sessao.Data &&
@@ -114,8 +114,6 @@ namespace GerenciadorCimena.Dominio.ModuloSessoes
         {
             HashCode hash = new HashCode();
             hash.Add(Id);
-            hash.Add(UsuarioId);
-            hash.Add(Usuario);
             hash.Add(_filme);
             hash.Add(_sala);
             hash.Add(Data);
@@ -138,4 +136,5 @@ namespace GerenciadorCimena.Dominio.ModuloSessoes
 
 
     }
+
 }

@@ -9,8 +9,7 @@ namespace GerenciadorCinema.Webapi.Config.AutoMapperConfig
     {
         public SessaoProfile()
         {
-            CreateMap<FormsSessaoViewModel, Sessao>()
-                .ForMember(destino => destino.UsuarioId, opt => opt.MapFrom<UsuarioResolver>())
+            CreateMap<FormsSessaoViewModel, Sessao>()              
 
                  .ForMember(destino => destino.Id, opt => opt.Ignore())
 

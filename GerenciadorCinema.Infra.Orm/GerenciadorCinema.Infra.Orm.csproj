@@ -20,4 +20,8 @@
     <ProjectReference Include="..\GerenciamentoCinema.Infra.Configs\GerenciamentoCinema.Infra.Configs.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

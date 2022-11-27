@@ -10,16 +10,6 @@ namespace GerenciadorCimena.Dominio.ModuloFilmes
     public class Filme : EntidadeBase<Filme>
     {        
 
-        public string Imagem { get; set; }
-
-        public string Titulo { get; set; }
-
-        public string Descricao { get; set; }
-
-        public TimeSpan Duracao { get; set; }
-
-        public List<Sessao> Sessoes { get; set; }        
-
         
 
         public Filme()
@@ -34,6 +24,18 @@ namespace GerenciadorCimena.Dominio.ModuloFilmes
             Duracao = duracao;
         }
 
+
+        public string Imagem { get; set; }
+
+        public string Titulo { get; set; }
+
+        public string Descricao { get; set; }
+
+        public TimeSpan Duracao { get; set; }
+
+        public List<Sessao> Sessoes { get; set; }
+
+
         public override void Atualizar(Filme registro)
         {
             Id = registro.Id;
@@ -43,24 +45,20 @@ namespace GerenciadorCimena.Dominio.ModuloFilmes
             Duracao = registro.Duracao;            
         }
 
-      
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Id, UsuarioId, Usuario, Imagem, Titulo, Descricao, Duracao, Sessoes);
-        }
-
         public override bool Equals(object obj)
         {
             return obj is Filme filme &&
                    Id.Equals(filme.Id) &&
-                   UsuarioId.Equals(filme.UsuarioId) &&
-                   EqualityComparer<Usuario>.Default.Equals(Usuario, filme.Usuario) &&
                    Imagem == filme.Imagem &&
                    Titulo == filme.Titulo &&
                    Descricao == filme.Descricao &&
                    Duracao.Equals(filme.Duracao) &&
                    EqualityComparer<List<Sessao>>.Default.Equals(Sessoes, filme.Sessoes);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, Imagem, Titulo, Descricao, Duracao, Sessoes);
         }
     }
 }

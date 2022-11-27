@@ -11,9 +11,7 @@ namespace GerenciadorCinema.Webapi.Config.AutoMapperConfig
             CreateMap<FormsSalaViewModel, Sala>()
                 .ForMember(destino => destino.QuantidadeAssentos, opt => opt.MapFrom(origem => origem.QuantidadeAssentos))
 
-                .ForMember(destino => destino.UsuarioId, opt => opt.MapFrom<UsuarioResolver>())
-
-                .ForMember(destino => destino.Id, opt => opt.Ignore());
+               .ForMember(destino => destino.Id, opt => opt.Ignore());
 
             CreateMap<Sala, ListarSalaViewModel>()
                 .ForMember(destino => destino.QuantidadeAssentos, opt => opt.MapFrom(origem => origem.QuantidadeAssentos));

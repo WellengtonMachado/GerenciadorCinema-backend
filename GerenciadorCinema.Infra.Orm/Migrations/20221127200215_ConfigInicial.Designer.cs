@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GerenciadorCinema.Infra.Orm.Migrations
 {
     [DbContext(typeof(GerenciadorCinemaDbContext))]
-    [Migration("20221114200231_adicionado compo tipo nos timespan")]
-    partial class adicionadocompotiponostimespan
+    [Migration("20221127200215_ConfigInicial")]
+    partial class ConfigInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -102,18 +102,13 @@ namespace GerenciadorCinema.Infra.Orm.Migrations
                     b.Property<TimeSpan>("Duracao")
                         .HasColumnType("time");
 
-                    b.Property<byte[]>("Imagem")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("Imagem")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Titulo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UsuarioId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Filme");
                 });
@@ -130,14 +125,29 @@ namespace GerenciadorCinema.Infra.Orm.Migrations
                     b.Property<int>("QuantidadeAssentos")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("UsuarioId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UsuarioId");
-
                     b.ToTable("TBSala");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("3b2c5b66-cdd6-4994-142c-08dad0b24785"),
+                            Nome = "Sala 1",
+                            QuantidadeAssentos = 15
+                        },
+                        new
+                        {
+                            Id = new Guid("a93942fe-2910-4f7a-142d-08dad0b24785"),
+                            Nome = "Sala 2",
+                            QuantidadeAssentos = 20
+                        },
+                        new
+                        {
+                            Id = new Guid("aecd5c0a-07ad-4ac5-142e-08dad0b24785"),
+                            Nome = "Sala 3",
+                            QuantidadeAssentos = 25
+                        });
                 });
 
             modelBuilder.Entity("GerenciadorCimena.Dominio.ModuloSessoes.Sessao", b =>
@@ -166,9 +176,6 @@ namespace GerenciadorCinema.Infra.Orm.Migrations
                     b.Property<Guid?>("SalaId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UsuarioId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<decimal>("ValorIngresso")
                         .HasColumnType("decimal(18,2)");
 
@@ -177,8 +184,6 @@ namespace GerenciadorCinema.Infra.Orm.Migrations
                     b.HasIndex("FilmeId");
 
                     b.HasIndex("SalaId");
-
-                    b.HasIndex("UsuarioId");
 
                     b.ToTable("TBSessao");
                 });
@@ -312,27 +317,6 @@ namespace GerenciadorCinema.Infra.Orm.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("GerenciadorCimena.Dominio.ModuloFilmes.Filme", b =>
-                {
-                    b.HasOne("GerenciadorCimena.Dominio.ModuloAutenticacao.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("GerenciadorCimena.Dominio.ModuloSalas.Sala", b =>
-                {
-                    b.HasOne("GerenciadorCimena.Dominio.ModuloAutenticacao.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.Navigation("Usuario");
-                });
-
             modelBuilder.Entity("GerenciadorCimena.Dominio.ModuloSessoes.Sessao", b =>
                 {
                     b.HasOne("GerenciadorCimena.Dominio.ModuloFilmes.Filme", "Filme")
@@ -345,16 +329,9 @@ namespace GerenciadorCinema.Infra.Orm.Migrations
                         .HasForeignKey("SalaId")
                         .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("GerenciadorCimena.Dominio.ModuloAutenticacao.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
                     b.Navigation("Filme");
 
                     b.Navigation("Sala");
-
-                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

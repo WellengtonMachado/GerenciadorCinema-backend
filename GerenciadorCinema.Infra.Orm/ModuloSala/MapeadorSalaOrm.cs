@@ -13,11 +13,7 @@ namespace GerenciadorCinema.Infra.Orm.ModuloSala
             builder.Property(x => x.Nome).HasColumnType("varchar(200)").IsRequired();
             builder.Property(x => x.QuantidadeAssentos).IsRequired();
 
-            builder.HasOne(x => x.Usuario)
-                .WithMany()
-                .IsRequired(false)
-                .HasForeignKey(x => x.UsuarioId)
-                .OnDelete(DeleteBehavior.NoAction);
+           
 
             builder.HasData(new Sala("Sala 1", 15));
             builder.HasData(new Sala("Sala 2", 20));

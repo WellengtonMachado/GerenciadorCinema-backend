@@ -16,12 +16,7 @@ namespace GerenciadorCinema.Infra.Orm.ModuloFilme
             builder.Property(x => x.Descricao).HasColumnType("varchar(500)").IsRequired();
             builder.Property(x => x.Duracao).HasColumnType("time").IsRequired();
             
-
-            builder.HasOne(x => x.Usuario)
-               .WithMany()
-               .IsRequired(false)
-               .HasForeignKey(x => x.UsuarioId)
-               .OnDelete(DeleteBehavior.NoAction);
+           
         }
 
 

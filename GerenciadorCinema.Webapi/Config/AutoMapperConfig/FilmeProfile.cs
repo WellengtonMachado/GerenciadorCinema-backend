@@ -9,10 +9,8 @@ namespace GerenciadorCinema.Webapi.Config.AutoMapperConfig
         public FilmeProfile()
         {
             //Converter de ViewModel para Entidade
-            CreateMap<FormsFilmeViewModel, Filme>()                          
-
-                .ForMember(destino => destino.UsuarioId, opt => opt.MapFrom<UsuarioResolver>())
-
+            CreateMap<FormsFilmeViewModel, Filme>()                     
+                               
                 .ForMember(destino => destino.Id, opt => opt.Ignore());
 
 
