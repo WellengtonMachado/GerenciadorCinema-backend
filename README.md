@@ -1,5 +1,5 @@
 # Sobre o Projeto
-### O Bakcend do projeto foi executado na linguagem C#, foi realizada uma API.Rest para ser consumida por um projeto Web, sendo em Angular, Typescript, HTML , CSS e Bootstrap.
+### O Bakcend do projeto foi executado na linguagem C#, foi realizada uma API.Rest que realixa CRUDs para ser consumida por um projeto Web, sendo em Angular, Typescript, HTML , CSS e Bootstrap.
 
 # Com o projeto aberto no Visual Studio:
 
