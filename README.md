@@ -9,3 +9,4 @@
 ## Inserir o comando: " dotnet run", para iniciar a API.
 ![image](https://user-images.githubusercontent.com/89493922/204143201-3bbf42d7-248c-4dc2-b601-a93a64d18d7d.png)
 
+# Próximos passos para executar a aplicação no navegador: https://github.com/User-Wellengton/GerenciadorCinema-frontend.
