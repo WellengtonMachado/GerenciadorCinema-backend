@@ -35,7 +35,7 @@ namespace GerenciadorCimena.Dominio.ModuloSessoes
 
 
 
-
+       
         public DateTime Data { get; set; }
 
         public TimeSpan HorarioInicio { get; set; }
@@ -62,7 +62,7 @@ namespace GerenciadorCimena.Dominio.ModuloSessoes
             }
         }
 
-        public Guid? FilmeId { get; set; }
+        public Guid FilmeId { get; set; }
 
 
         public Sala Sala
@@ -77,7 +77,7 @@ namespace GerenciadorCimena.Dominio.ModuloSessoes
             }
         }
 
-        public Guid? SalaId { get; set; }
+        public Guid SalaId { get; set; }
 
         public override void Atualizar(Sessao registro)
         {

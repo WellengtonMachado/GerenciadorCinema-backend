@@ -114,12 +114,8 @@ namespace GerenciadorCinema.Servico.ModuloFilme
             {
                 contextoPersistencia.DesfazerAlteracoes();
 
-                string msgErro = "Falha no sistema ao tentar excluir o Filme";
-
-                if ((bool)(ex.InnerException?.Message?.StartsWith("Cannot insert the value NULL into column 'FilmeId'")))
-                {
-                    msgErro = "Não foi possivel remover este filme, pois ele está vinculado a uma sessão";
-                }
+                string msgErro = "Não foi possivel remover este filme, pois ele está vinculado a uma sessão";
+                
 
                 Log.Logger.Error(ex, msgErro + " {FilmeId}", filme.Id);
 
